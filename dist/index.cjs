@@ -30,11 +30,12 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var index_exports = {};
 __export(index_exports, {
+  parseTransfer: () => parseTransfer,
   transferSchema: () => transferSchema
 });
 module.exports = __toCommonJS(index_exports);
 
-// src/types/smartinvoice.ts
+// src/types.ts
 var import_zod = __toESM(require("zod"), 1);
 var isoDateTime = import_zod.default.iso.datetime({ offset: true });
 var isoDate = import_zod.default.string().regex(/^\d{4}-\d{2}-\d{2}$/);
@@ -222,7 +223,13 @@ var transferSchema = import_zod.default.strictObject({
   }).optional(),
   transfer_action: import_zod.default.string().optional()
 });
+
+// src/util.ts
+var parseTransfer = (json) => {
+  return transferSchema.parse(json);
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  parseTransfer,
   transferSchema
 });

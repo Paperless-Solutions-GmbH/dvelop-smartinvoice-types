@@ -673,4 +673,13 @@ type InvoiceLineItem = z.infer<typeof invoiceLineItemSchema>;
 type WorkflowStep = z.infer<typeof workflowStepSchema>;
 type Voucher = z.infer<typeof voucherSchema>;
 
-export { type Actor, type InvoiceLineItem, type Reference, type Transfer, type Voucher, type WorkflowStep, transferSchema };
+/**
+ * Parses a JSON object into a Transfer object.
+ *
+ * @param json The JSON object to parse.
+ * @returns A valid Transfer object
+ * @throws {ZodError} If the JSON object does not conform to the Transfer schema.
+ */
+declare const parseTransfer: (json: unknown) => Transfer;
+
+export { type Actor, type InvoiceLineItem, type Reference, type Transfer, type Voucher, type WorkflowStep, parseTransfer, transferSchema };

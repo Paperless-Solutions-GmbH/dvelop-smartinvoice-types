@@ -1,4 +1,4 @@
-// src/types/smartinvoice.ts
+// src/types.ts
 import z from "zod";
 var isoDateTime = z.iso.datetime({ offset: true });
 var isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
@@ -186,6 +186,12 @@ var transferSchema = z.strictObject({
   }).optional(),
   transfer_action: z.string().optional()
 });
+
+// src/util.ts
+var parseTransfer = (json) => {
+  return transferSchema.parse(json);
+};
 export {
+  parseTransfer,
   transferSchema
 };
