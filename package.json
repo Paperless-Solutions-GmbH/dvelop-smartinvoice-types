@@ -1,0 +1,45 @@
+{
+  "name": "dvelop-smartinvoice-types",
+  "version": "0.0.2",
+  "description": "TypeScript types and Zod schemas for d.velop smart invoice payloads.",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paperless-Solutions-GmbH/dvelop-smartinvoice-types.git"
+  },
+  "author": "pplsjannik",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "check": "tsc --noEmit",
+    "prepublishOnly": "npm run check && npm run build"
+  },
+  "keywords": [
+    "dvelop",
+    "smartinvoice",
+    "zod",
+    "typescript"
+  ],
+  "peerDependencies": {
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.9.2"
+  }
+}
