@@ -1,4 +1,4 @@
-import { transferSchema, type Transfer } from "./types";
+import { transferSchema, type Transfer } from "./types.js";
 
 /**
  * Parses a JSON object into a Transfer object.

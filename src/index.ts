@@ -6,6 +6,6 @@ export {
   type InvoiceLineItem,
   type WorkflowStep,
   type Voucher,
-} from "./types";
+} from "./types.js";
 
-export { parseTransfer } from "./util";
+export { parseTransfer } from "./util.js";
