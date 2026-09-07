@@ -17,7 +17,8 @@ const referenceSchema = z
   })
   .meta({
     id: "Reference",
-    description: "Reference to a company or vendor, containing the number and optional name.",
+    description:
+      "Reference to a company or vendor, containing the number and optional name.",
   });
 const actorSchema = z
   .strictObject({
@@ -39,7 +40,8 @@ const actorSchema = z
   })
   .meta({
     id: "Actor",
-    description: "User or workflow actor associated with verification, assignment, or delegation.",
+    description:
+      "User or workflow actor associated with verification, assignment, or delegation.",
   });
 const invoiceLineItemSchema = z
   .strictObject({
@@ -50,16 +52,20 @@ const invoiceLineItemSchema = z
       description: "The line number of the document line item.",
     }),
     verified: z.boolean().meta({
-      description: "Indicates whether the line item is marked as factually correct.",
+      description:
+        "Indicates whether the line item is marked as factually correct.",
     }),
     verifier: actorSchema.nullable().optional().meta({
-      description: "Indicates the person who is authorized to mark this line item as factually correct.",
+      description:
+        "Indicates the person who is authorized to mark this line item as factually correct.",
     }),
     verified_by: actorSchema.nullable().optional().meta({
-      description: "Indicates the person who marked this line item as factually correct.",
+      description:
+        "Indicates the person who marked this line item as factually correct.",
     }),
     verified_at: isoDateTime.nullable().optional().meta({
-      description: "The time at which this line item was marked as factually correct in ISO 8601 format.",
+      description:
+        "The time at which this line item was marked as factually correct in ISO 8601 format.",
     }),
     gl_account: z.strictObject({ nr: z.string() }).meta({
       description: "The G/L account of the document line item.",
@@ -97,16 +103,20 @@ const invoiceLineItemSchema = z
       description: "The tax code of the document line item.",
     }),
     order_number: nullableString.meta({
-      description: "The number of the purchase order belonging to this document line item.",
+      description:
+        "The number of the purchase order belonging to this document line item.",
     }),
     order_line: nullableNumber.meta({
-      description: "The number of the purchase order line item belonging to this document line item.",
+      description:
+        "The number of the purchase order line item belonging to this document line item.",
     }),
     order_id: nullableString.meta({
-      description: "The ID of the purchase order belonging to this document line item.",
+      description:
+        "The ID of the purchase order belonging to this document line item.",
     }),
     order_line_id: nullableString.meta({
-      description: "The ID of the purchase order line item belonging to this document line item.",
+      description:
+        "The ID of the purchase order line item belonging to this document line item.",
     }),
     quantity: z.strictObject({ invoiced: nullableNumber }).meta({
       description: "The quantity of the document line item.",
@@ -130,61 +140,79 @@ const invoiceLineItemSchema = z
       description: "Absolute discount on the unit price of the line item.",
     }),
     discount_percent: nullableNumber.meta({
-      description: "First percentage discount on the net amount of the line item.",
+      description:
+        "First percentage discount on the net amount of the line item.",
     }),
     discount2_percent: nullableNumber.meta({
-      description: "Second percentage discount on the net amount of the line item.",
+      description:
+        "Second percentage discount on the net amount of the line item.",
     }),
     discount3_percent: nullableNumber.meta({
-      description: "Third percentage discount on the net amount of the line item.",
+      description:
+        "Third percentage discount on the net amount of the line item.",
     }),
     discount4_percent: nullableNumber.meta({
-      description: "Fourth percentage discount on the net amount of the line item.",
+      description:
+        "Fourth percentage discount on the net amount of the line item.",
     }),
     discount5_percent: nullableNumber.meta({
-      description: "Fifth percentage discount on the net amount of the line item.",
+      description:
+        "Fifth percentage discount on the net amount of the line item.",
     }),
     type: z.string().meta({
-      description: "The type of the document line item: normal, line_item_surcharge, or header_surcharge.",
+      description:
+        "The type of the document line item: normal, line_item_surcharge, or header_surcharge.",
     }),
     surcharged_line_item_id: z.string().nullable().meta({
-      description: "Reference to the internal ID of the document line item to which this surcharge line item belongs.",
+      description:
+        "Reference to the internal ID of the document line item to which this surcharge line item belongs.",
     }),
     header_surcharge_allocations: z.array(z.unknown()).meta({
-      description: "The distribution of a header surcharge across document line items.",
+      description:
+        "The distribution of a header surcharge across document line items.",
     }),
     verified_as_delegate_of: actorSchema.nullable().optional().meta({
-      description: "Indicates on whose behalf the document was signed in a delegated capacity.",
+      description:
+        "Indicates on whose behalf the document was signed in a delegated capacity.",
     }),
     base_net_amount: nullableNumber.meta({
-      description: "Not relevant; relates to obsolete surcharge features no longer being developed.",
+      description:
+        "Not relevant; relates to obsolete surcharge features no longer being developed.",
     }),
     net_amount_surcharge: nullableNumber.meta({
-      description: "Not relevant; relates to obsolete surcharge features no longer being developed.",
+      description:
+        "Not relevant; relates to obsolete surcharge features no longer being developed.",
     }),
     base_unit_price: nullableNumber.meta({
-      description: "Not relevant; relates to obsolete surcharge features no longer being developed.",
+      description:
+        "Not relevant; relates to obsolete surcharge features no longer being developed.",
     }),
     unit_price_surcharge: nullableNumber.meta({
-      description: "Not relevant; relates to obsolete surcharge features no longer being developed.",
+      description:
+        "Not relevant; relates to obsolete surcharge features no longer being developed.",
     }),
     price_unit: nullableNumber.meta({
-      description: "The price unit relevant if supplier and company do not work with the same price unit.",
+      description:
+        "The price unit relevant if supplier and company do not work with the same price unit.",
     }),
     delivery_slip_number: nullableString.meta({
       description: "The delivery slip number of the document line item.",
     }),
     goods_receipt_id: nullableString.meta({
-      description: "The ID of the goods receipt belonging to this document line item.",
+      description:
+        "The ID of the goods receipt belonging to this document line item.",
     }),
     goods_receipt_number: nullableString.meta({
-      description: "The number of the goods receipt belonging to this document line item.",
+      description:
+        "The number of the goods receipt belonging to this document line item.",
     }),
     goods_receipt_line_item_id: nullableString.meta({
-      description: "The ID of the goods receipt line item belonging to this document line item.",
+      description:
+        "The ID of the goods receipt line item belonging to this document line item.",
     }),
     goods_receipt_line_item_number: nullableString.meta({
-      description: "The number of the goods receipt line item belonging to this document line item.",
+      description:
+        "The number of the goods receipt line item belonging to this document line item.",
     }),
     goods_receipt_creation_date: isoDateTime.nullable().optional().meta({
       description: "The creation date of the goods receipt.",
@@ -194,7 +222,8 @@ const invoiceLineItemSchema = z
         description: "The receipt date of the goods receipt line item.",
       }),
     goods_receipt_delivery_slip_number: nullableString.meta({
-      description: "The delivery slip number associated with the goods receipt.",
+      description:
+        "The delivery slip number associated with the goods receipt.",
     }),
     ...Object.fromEntries(
       Array.from({ length: 20 }, (_, index) => [
@@ -208,15 +237,18 @@ const invoiceLineItemSchema = z
       description: "The procurement category of the document line item.",
     }),
     surcharges: z.strictObject({}).meta({
-      description: "Not relevant; relates to obsolete surcharge features no longer being developed.",
+      description:
+        "Not relevant; relates to obsolete surcharge features no longer being developed.",
     }),
     verifications: z.strictObject({}).meta({
-      description: "Not relevant; relates to obsolete verification features no longer being developed.",
+      description:
+        "Not relevant; relates to obsolete verification features no longer being developed.",
     }),
   })
   .meta({
     id: "InvoiceLineItem",
-    description: "Single document line item from a d.velop smart invoice transfer payload.",
+    description:
+      "Single document line item from a d.velop smart invoice transfer payload.",
   });
 const workflowStepSchema = z
   .strictObject({
@@ -253,7 +285,8 @@ const workflowStepSchema = z
 const voucherSchema = z
   .strictObject({
     doc_id: z.string().meta({
-      description: "The ID of the document in the underlying document management system.",
+      description:
+        "The ID of the document in the underlying document management system.",
     }),
     company: referenceSchema.meta({
       description: "The company (invoice recipient) for this document.",
@@ -301,7 +334,8 @@ const voucherSchema = z
       description: "The internal document number.",
     }),
     external_number: z.string().meta({
-      description: "The external document number, usually the vendor invoice number.",
+      description:
+        "The external document number, usually the vendor invoice number.",
     }),
     payment_date: isoDateTime.nullable().optional().meta({
       description: "The payment date in ISO 8601 format.",
@@ -310,7 +344,8 @@ const voucherSchema = z
       description: "The date of supply in ISO 8601 format.",
     }),
     financially_correct: z.boolean().meta({
-      description: "Indicates whether the invoice is considered financially correct.",
+      description:
+        "Indicates whether the invoice is considered financially correct.",
     }),
     document_type: z.strictObject({
       id: z.string().meta({
@@ -354,7 +389,8 @@ const voucherSchema = z
         description: "The manually entered cash discount due date.",
       }),
       cashback_percentage1: nullableNumber.meta({
-        description: "The manually entered cash discount percentage as a decimal value.",
+        description:
+          "The manually entered cash discount percentage as a decimal value.",
       }),
     }).meta({
       description: "The manually entered payment terms for the workflow.",
@@ -367,10 +403,12 @@ const voucherSchema = z
         description: "The cash discount due date.",
       }),
       cashback_amount1: nullableNumber.meta({
-        description: "The calculated cash discount amount (gross) as a decimal value.",
+        description:
+          "The calculated cash discount amount (gross) as a decimal value.",
       }),
     }).meta({
-      description: "The net and cash discount due dates and cash discount amount.",
+      description:
+        "The net and cash discount due dates and cash discount amount.",
     }),
     posting_period: isoDate.nullable().optional().meta({
       description: "The posting period for the invoice.",
@@ -393,7 +431,8 @@ const voucherSchema = z
       ]),
     ),
     line_items: z.record(z.guid(), invoiceLineItemSchema).meta({
-      description: "A map of document line items keyed by their internal document ID.",
+      description:
+        "A map of document line items keyed by their internal document ID.",
     }),
     responsible: actorSchema.nullable().optional().meta({
       description: "The person primarily responsible for the invoice.",
@@ -407,19 +446,23 @@ const voucherSchema = z
   })
   .meta({
     id: "Voucher",
-    description: "Document header data of the transferred invoice, including totals, payment terms, and line items.",
+    description:
+      "Document header data of the transferred invoice, including totals, payment terms, and line items.",
   });
 export const transferSchema = z
   .strictObject({
     event_type: z.enum(["integration.export"]).meta({
-      description: "The type of the transferred event. At present, only integration.export is used.",
+      description:
+        "The type of the transferred event. At present, only integration.export is used.",
     }),
     _links: z.strictObject({
       dmsobject: linkRelationSchema.meta({
-        description: "Link to the invoice in the underlying document management system.",
+        description:
+          "Link to the invoice in the underlying document management system.",
       }),
       report_results_async: linkRelationSchema.meta({
-        description: "The URL for reporting the processing result after asynchronous processing.",
+        description:
+          "The URL for reporting the processing result after asynchronous processing.",
       }),
     }).meta({
       description: "Links to related resources.",
@@ -447,10 +490,12 @@ export const transferSchema = z
         description: "Indicates whether the workflow is currently locked.",
       }),
       assignees: z.array(actorSchema).optional().meta({
-        description: "List of recipients to whom the current step was delivered.",
+        description:
+          "List of recipients to whom the current step was delivered.",
       }),
     }).meta({
-      description: "The workflow object. This object contains document data and status information about the workflow.",
+      description:
+        "The workflow object. This object contains document data and status information about the workflow.",
     }),
     connection: z.strictObject({
       from_step: workflowStepSchema.meta({
@@ -514,8 +559,49 @@ export const transferSchema = z
   })
   .meta({
     id: "Transfer",
-    description: "Transfer payload sent by d.velop smart invoice when an export is triggered.",
+    description:
+      "Transfer payload sent by d.velop smart invoice when an export is triggered.",
   });
+export const transferSuccessResponseSchema = z.strictObject({
+  successful: z.literal(true).meta({
+    description: "Indicates that the transfer request was accepted.",
+  }),
+}).meta({
+  id: "TransferSuccessResponse",
+  description: "Success payload returned to Smart Invoice.",
+});
+export const transferErrorResponseSchema = z.strictObject({
+  successful: z.literal(false).meta({
+    description: "Indicates that the transfer request failed.",
+  }),
+  error: z.strictObject({
+    de: z.string().meta({
+      description: "German error message.",
+      examples: ["System not found"],
+    }),
+    en: z.string().meta({
+      description: "English error message.",
+      examples: ["System not found"],
+    }),
+  }).catchall(
+    z.string().meta({
+      "x-additionalPropertiesName": "countryCode",
+    }),
+  ).meta({
+    description: "Localized error messages keyed by language code.",
+  }),
+}).meta({
+  id: "TransferErrorResponse",
+  description: "Error payload returned to Smart Invoice.",
+});
+export const transferResponseSchema = z.union([
+  transferSuccessResponseSchema,
+  transferErrorResponseSchema,
+]).meta({
+  id: "TransferResponse",
+  description:
+    "Response payload returned to Smart Invoice, indicating success or failure.",
+});
 
 export type Transfer = z.infer<typeof transferSchema>;
 export type Reference = z.infer<typeof referenceSchema>;
@@ -523,3 +609,8 @@ export type Actor = z.infer<typeof actorSchema>;
 export type InvoiceLineItem = z.infer<typeof invoiceLineItemSchema>;
 export type WorkflowStep = z.infer<typeof workflowStepSchema>;
 export type Voucher = z.infer<typeof voucherSchema>;
+export type TransferSuccessResponse = z.infer<
+  typeof transferSuccessResponseSchema
+>;
+export type TransferErrorResponse = z.infer<typeof transferErrorResponseSchema>;
+export type TransferResponse = z.infer<typeof transferResponseSchema>;
