@@ -666,12 +666,34 @@ declare const transferSchema: z.ZodObject<{
     }, z.z.core.$strict>>;
     transfer_action: z.ZodOptional<z.ZodString>;
 }, z.z.core.$strict>;
+declare const transferSuccessResponseSchema: z.ZodObject<{
+    successful: z.ZodLiteral<true>;
+}, z.z.core.$strict>;
+declare const transferErrorResponseSchema: z.ZodObject<{
+    successful: z.ZodLiteral<false>;
+    error: z.ZodObject<{
+        de: z.ZodString;
+        en: z.ZodString;
+    }, z.z.core.$catchall<z.ZodString>>;
+}, z.z.core.$strict>;
+declare const transferResponseSchema: z.ZodUnion<readonly [z.ZodObject<{
+    successful: z.ZodLiteral<true>;
+}, z.z.core.$strict>, z.ZodObject<{
+    successful: z.ZodLiteral<false>;
+    error: z.ZodObject<{
+        de: z.ZodString;
+        en: z.ZodString;
+    }, z.z.core.$catchall<z.ZodString>>;
+}, z.z.core.$strict>]>;
 type Transfer = z.infer<typeof transferSchema>;
 type Reference = z.infer<typeof referenceSchema>;
 type Actor = z.infer<typeof actorSchema>;
 type InvoiceLineItem = z.infer<typeof invoiceLineItemSchema>;
 type WorkflowStep = z.infer<typeof workflowStepSchema>;
 type Voucher = z.infer<typeof voucherSchema>;
+type TransferSuccessResponse = z.infer<typeof transferSuccessResponseSchema>;
+type TransferErrorResponse = z.infer<typeof transferErrorResponseSchema>;
+type TransferResponse = z.infer<typeof transferResponseSchema>;
 
 /**
  * Parses a JSON object into a Transfer object.
@@ -682,4 +704,4 @@ type Voucher = z.infer<typeof voucherSchema>;
  */
 declare const parseTransfer: (json: unknown) => Transfer;
 
-export { type Actor, type InvoiceLineItem, type Reference, type Transfer, type Voucher, type WorkflowStep, parseTransfer, transferSchema };
+export { type Actor, type InvoiceLineItem, type Reference, type Transfer, type TransferErrorResponse, type TransferResponse, type TransferSuccessResponse, type Voucher, type WorkflowStep, parseTransfer, transferSchema };
