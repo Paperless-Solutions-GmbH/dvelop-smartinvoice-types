@@ -532,6 +532,45 @@ var transferSchema = import_zod.default.strictObject({
   id: "Transfer",
   description: "Transfer payload sent by d.velop smart invoice when an export is triggered."
 });
+var transferSuccessResponseSchema = import_zod.default.strictObject({
+  successful: import_zod.default.literal(true).meta({
+    description: "Indicates that the transfer request was accepted."
+  })
+}).meta({
+  id: "TransferSuccessResponse",
+  description: "Success payload returned to Smart Invoice."
+});
+var transferErrorResponseSchema = import_zod.default.strictObject({
+  successful: import_zod.default.literal(false).meta({
+    description: "Indicates that the transfer request failed."
+  }),
+  error: import_zod.default.strictObject({
+    de: import_zod.default.string().meta({
+      description: "German error message.",
+      examples: ["System not found"]
+    }),
+    en: import_zod.default.string().meta({
+      description: "English error message.",
+      examples: ["System not found"]
+    })
+  }).catchall(
+    import_zod.default.string().meta({
+      "x-additionalPropertiesName": "countryCode"
+    })
+  ).meta({
+    description: "Localized error messages keyed by language code."
+  })
+}).meta({
+  id: "TransferErrorResponse",
+  description: "Error payload returned to Smart Invoice."
+});
+var transferResponseSchema = import_zod.default.union([
+  transferSuccessResponseSchema,
+  transferErrorResponseSchema
+]).meta({
+  id: "TransferResponse",
+  description: "Response payload returned to Smart Invoice, indicating success or failure."
+});
 
 // src/util.ts
 var parseTransfer = (json) => {

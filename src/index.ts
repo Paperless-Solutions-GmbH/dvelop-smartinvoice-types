@@ -1,11 +1,14 @@
 export {
-  transferSchema,
-  type Transfer,
-  type Reference,
   type Actor,
   type InvoiceLineItem,
-  type WorkflowStep,
+  type Reference,
+  type Transfer,
+  type TransferErrorResponse,
+  type TransferResponse,
+  transferSchema,
+  type TransferSuccessResponse,
   type Voucher,
+  type WorkflowStep,
 } from "./types.js";
 
 export { parseTransfer } from "./util.js";

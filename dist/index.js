@@ -495,6 +495,45 @@ var transferSchema = z.strictObject({
   id: "Transfer",
   description: "Transfer payload sent by d.velop smart invoice when an export is triggered."
 });
+var transferSuccessResponseSchema = z.strictObject({
+  successful: z.literal(true).meta({
+    description: "Indicates that the transfer request was accepted."
+  })
+}).meta({
+  id: "TransferSuccessResponse",
+  description: "Success payload returned to Smart Invoice."
+});
+var transferErrorResponseSchema = z.strictObject({
+  successful: z.literal(false).meta({
+    description: "Indicates that the transfer request failed."
+  }),
+  error: z.strictObject({
+    de: z.string().meta({
+      description: "German error message.",
+      examples: ["System not found"]
+    }),
+    en: z.string().meta({
+      description: "English error message.",
+      examples: ["System not found"]
+    })
+  }).catchall(
+    z.string().meta({
+      "x-additionalPropertiesName": "countryCode"
+    })
+  ).meta({
+    description: "Localized error messages keyed by language code."
+  })
+}).meta({
+  id: "TransferErrorResponse",
+  description: "Error payload returned to Smart Invoice."
+});
+var transferResponseSchema = z.union([
+  transferSuccessResponseSchema,
+  transferErrorResponseSchema
+]).meta({
+  id: "TransferResponse",
+  description: "Response payload returned to Smart Invoice, indicating success or failure."
+});
 
 // src/util.ts
 var parseTransfer = (json) => {
