@@ -1,6 +1,6 @@
 {
-  "name": "dvelop-smartinvoice-types",
-  "version": "0.0.4",
+  "name": "@ppls/dvelop-smartinvoice-types",
+  "version": "0.0.1",
   "description": "TypeScript types and Zod schemas for d.velop smart invoice payloads.",
   "license": "ISC",
   "repository": {

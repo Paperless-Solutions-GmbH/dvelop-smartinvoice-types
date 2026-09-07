@@ -1,11 +1,11 @@
 # dvelop-smartinvoice-types
 
-TypeScript types and Zod schemas for d.velop smart invoice payloads.
+TypeScript types and OpenAPI-enabled Zod schemas for d.velop smart invoice payloads.
 
 ## Installation
 
 ```bash
-npm install dvelop-smartinvoice-types zod
+npm install @ppls/dvelop-smartinvoice-types zod
 ```
 
 ## Usage
